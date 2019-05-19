@@ -44,7 +44,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=prayogostorage;AccountKey=up9ritEVCFKFq0wk1JLwvIFQ5NmT/psWXaeYS5atNYebaIpc9BV0eJj345O9NLiSb0prOCNb+tWCuPS60ZF1VA==;EndpointSuffix=core.windows.net";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
-$fileToUpload = "imageku.jpg";
+$fileToUpload = "MyImage.jpg";
 $blobURL = "";
 if (!isset($_GET["Cleanup"])) {
     // Create container options object.
@@ -82,10 +82,6 @@ if (!isset($_GET["Cleanup"])) {
         
         $content = fopen($fileToUpload, "r");
         
-        // $options = new CreateBlobOptions();
-        // $options->setContentType("image/jpeg");
-        // Upload blob
-        // var_dump($blobClient->createBlockBlob($containerName, $fileToUpload, $content, $options));
         try {
             //Upload blob
             $blobClient->createBlockBlob($containerName, $fileToUpload, $content);
@@ -98,7 +94,7 @@ if (!isset($_GET["Cleanup"])) {
         
         // List blobs.
         $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("imageku");
+        $listBlobsOptions->setPrefix("MyImage");
         echo "These are the blobs present in the container: ";
         do{
             $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
@@ -110,15 +106,6 @@ if (!isset($_GET["Cleanup"])) {
         
             $listBlobsOptions->setContinuationToken($result->getContinuationToken());
         } while($result->getContinuationToken());
-        echo "<br />";
-        // Get blob.
-        // echo "This is the content of the blob uploaded: ";
-        // $blob = $blobClient->getBlob($containerName, $fileToUpload);
-        // // send the right headers
-        // // header("Content-Type: image/jpeg");
-        // // header("Content-Length: " . filesize($fileToUpload));
-        // fpassthru($blob->getContentStream());
-        echo "<br />";
     }
     catch(ServiceException $e){
         // Handle exception based on error codes and messages.
@@ -160,7 +147,7 @@ else
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Analyze Sample</title>
+    <title>Analisa Gambar</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 <body>
@@ -231,29 +218,23 @@ else
     };
 </script>
 
-<h1>Final Submission MACD</h1>
-
-<form method="post" action="index.php?Cleanup&containerName=<?php echo $containerName; ?>">
-    <button type="submit">Press to clean up all resources created by this sample</button>
-</form>
+<h1>Analisa Gambar Dengan Azure Computer Vision</h1>
 
 <input type="text" name="inputImage" id="inputImage"
     value="<?=$blobURL;?>"/>
-<button onclick="processImage()">Start Analyzing</button>
-
+<button onclick="processImage()">Mulai Analisa</button>
 <br><br>
-<div id="wrapper" style="width:1020px; display:table;">
-    <div id="jsonOutput" style="width:600px; display:table-cell;">
-        Response:
-        <br><br>
-        <textarea id="responseTextArea" class="UIInput"
-                  style="width:580px; height:400px;"></textarea>
-    </div>
-    <div id="imageDiv" style="width:420px; display:table-cell;">
-        Source image:
-        <br><br>
-        <img id="sourceImage" width="400" />
-    </div>
+Hasil:
+<br>
+<div id="jsonOutput" style="width:600px;">
+     <textarea id="responseTextArea" class="UIInput" readonly="readonly"
+                  "></textarea>
 </div>
+<br>
+<img id="sourceImage" width="400" />
+<br>
+<form method="post" action="index.php?Cleanup&containerName=<?php echo $containerName; ?>">
+    <button type="submit">Hapus semua resources ini!</button>
+</form>
 </body>
 </html>
