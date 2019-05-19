@@ -72,17 +72,14 @@ if (isset($_POST['submit'])) {
                 alert(errorString);
             });
         });
+		 function goBack() {
+        window.history.back();
+    }
     </script>
 <img id="sourceImage" width="400" />
 <br>
 <h3 id="description">Memproses . . .</h3>
-<form action="index.php" method="post">
-<input type="submit" name="submit" value="Kembali">
-</form>
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="https://getbootstrap.com/docs/4.0/assets/js/vendor/popper.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.0/dist/js/bootstrap.min.js"></script>
+<br>
+<button onclick="goBack()">Kembali</button>
 </body>
 </html>
