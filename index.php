@@ -8,7 +8,7 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=prayogostorage;AccountKey=up9ritEVCFKFq0wk1JLwvIFQ5NmT/psWXaeYS5atNYebaIpc9BV0eJj345O9NLiSb0prOCNb+tWCuPS60ZF1VA==;";
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=prayogostorage;AccountKey=up9ritEVCFKFq0wk1JLwvIFQ5NmT/psWXaeYS5atNYebaIpc9BV0eJj345O9NLiSb0prOCNb+tWCuPS60ZF1VA==;EndpointSuffix=core.windows.net";
 $containerName = "blockblobsbkqtne";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
