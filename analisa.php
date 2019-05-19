@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     <html>
     <head>
        <title>Analisa Gambar</title>
-       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+       <script src="/jquery.min.js"></script>
     </head>
         <body>
           <h1>Hasil Analisa Gambar</h1>
